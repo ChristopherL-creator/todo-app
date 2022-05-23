@@ -1,21 +1,31 @@
 const responseCallBack = (response) => response.json(); 
 
-const toDoContainer = document.createElement('div'); 
-toDoContainer.classList.add('todo-container'); 
-
-
-const toDoHeader = document.createElement('header'); 
-toDoHeader.classList.add('todo-header'); 
-
-function displayHeader(){ 
-    //const toDoListContainer = document.getElementById('todo-list-container'); 
-    const toDoHeaderTitle = document.getElementById('todo-header-id'); 
-    const headerH1 = document.createElement('h2'); 
-    headerH1.classList.add('header-h1');
-    const titleNode = document.createTextNode('ToDo App'); 
-    headerH1.appendChild(titleNode); 
-    toDoHeaderTitle.appendChild(headerH1); 
+const createToDoDate = (name) => { 
+    const div = document.createElement('div'); 
+    div.classList.add('creation-date');
+    div.appendChild(document.createTextNode(name)); 
+    return div; 
 } 
+
+const createToDoTags = (tags) => { 
+    const div = document.createElement('div'); 
+    div.classList.add('todo-tags');
+    div.appendChild(document.createTextNode(tags)); 
+    return div; 
+} 
+
+const createToDoName = (name) => { 
+    const div = document.createElement('div'); 
+    div.classList.add('todo-name');
+    div.appendChild(document.createTextNode(name)); 
+    return div; 
+} 
+
+const createDivider = () => { 
+    const divider = document.createElement('div'); 
+    divider.classList.add('todo-divider'); 
+    return divider;
+}
 
 const deleteCallback = () => {
     initApp();
@@ -27,79 +37,78 @@ const createDeleteToDo = (id) => {
         method: 'delete'
     } 
     fetch(deleteUrl, fetchConf) 
-                     .then(responseCallBack) 
-                     .then(deleteCallBack); 
+    .then(responseCallBack) 
+    .then(deleteCallback); 
 
 } 
 
+const createToDoCheck = () => { 
+    const check = document.createElement('input');  
+    check.setAttribute("type", "checkbox");
+    check.classList.add('done-check');
+    return check; 
+}  
+
 const createDeleteToDoButton = (id) => { 
     const button = document.createElement('button'); 
+    button.classList.add('delete-button');
     button.classList.add('material-symbols-outlined');
     button.onclick = () => deleteToDo(id); 
-    const node = document.images('img'); 
-    button.appendChild(node); 
     return button; 
+}  
+
+const createToDoGrid = (todo) => { 
+    const toDoGrid = document.createElement('div'); 
+    toDoGrid.classList.add('todo-grid'); 
+    toDoGrid.appendChild(createToDoName(todo.name)); 
+    toDoGrid.appendChild(createToDoTags(todo.tags)); 
+    toDoGrid.appendChild(createToDoDate(todo.creationDate)); 
+    toDoGrid.appendChild(createDivider());
+    toDoGrid.appendChild(createDeleteToDoButton(todo.id)); 
+    toDoGrid.appendChild(createToDoCheck());
+    return toDoGrid
 } 
 
 const createToDoCard = (todo) => {
     const toDoCard = document.createElement('div'); 
     toDoCard.classList.add('todo-card'); 
-    toDoCard.appendChild(createToDoName(todo.name)); 
-    toDoCard.appendChild(createToDoTags(todo.tags)); 
-    toDoCard.appendChild(createToDoDate(todo.creationDate)); 
-    toDoCard.appendChild(createDeleteToDoButton(todo.id)); 
-    toDoCard.appendChild(createToDoCheck(todo.id)); 
+    toDoCard.appendChild(createToDoGrid(todo)); 
     return toDoCard;
 }
 
-displayHeader();
 
-const createArrayOfToDoCards = (arrayOfToDo) => arrayOfToDo.map(todo => createToDoCard(todo)); 
+const createArrayOfToDosCard = (arrayOfToDo) => arrayOfToDo.map(todo => createToDoCard(todo)); 
 
-const displayToDos = (createToDos) => { 
+const displayToDos = (arrayOfToDos) => { 
+    document.body.innerHTML= ''; 
 
-    document.body.innerHTML = ''; 
-
-    const toDoListContainer = document.getElementById('todo-list-container'); 
-    toDoListContainer.append(...createArrayOfToDoCards(arrayOfToDos)); 
-    document.body.appendChild(toDoListContainer);
-
-    // for (let i = 0; i < toDoList.length; i++) {
-    //     const todo = toDoList[i]; 
-    //     const div = document.createElement('div'); 
-        
-    //     const toDoTemplate = template.replace('#TODONAME', todo.name) 
-    //                                  .replace('#CREATIONDATE', todo.creationDate.toISOString()); 
-                
-    //     div.innerHTML = toDoTemplate; 
-    //     toDoListContainer.appendChild(div); 
-
-    //     const toDoContainer = div.querySelector('.task-div'); 
-    //     toDoContainer.style.backgroundColor = todo.priority.color;
-
-    //     if (todo.deadLine) {
-    //         const dateContainer = div.querySelector('.creation-container');
-    //         const dateSpan = document.createElement('div'); 
-    //         dateSpan.classList.add('dates')
-    //         const dateNode = document.createTextNode(todo.deadLine.toISOString()); 
-    //         dateSpan.appendChild(dateNode); 
-    //         dateContainer.appendChild(dateSpan);
-    //     } 
-
-    //     const tagContainer = div.querySelector('.task-flex');
-    //     for (const tag of todo.tags) {
-    //         const tagSpan = document.createElement('span'); 
-    //         const node = document.createTextNode(tag); 
-    //         tagSpan.classList.add('tags-items')
-    //         tagSpan.appendChild(node); 
-    //         tagContainer.appendChild(tagSpan);
-    //     }
-    // }
-} 
-
-displayToDos(); 
-
-
+    const toDoHeader = document.createElement('header'); 
+    toDoHeader.classList.add('todo-header');
+    document.body.appendChild(toDoHeader);
+    
+    const headerH1 = document.createElement('h2'); 
+    headerH1.classList.add('header-h2');
+    const titleNode = document.createTextNode('ToDo App'); 
+    headerH1.appendChild(titleNode); 
+    toDoHeader.appendChild(headerH1); 
+    
+    const menuButton = document.createElement('button'); 
+    menuButton.classList.add('menu-button');
+    const menuButtonNode = document.createTextNode('='); 
+    menuButton.appendChild(menuButtonNode); 
+    toDoHeader.appendChild(menuButton); 
+    
+    const arrayContainer = document.createElement('div');
+    arrayContainer.classList.add('array-container');
+    arrayContainer.append(...createArrayOfToDosCard(arrayOfToDos));
+    document.body.appendChild(arrayContainer); 
+    
+    const addToDoButton = document.createElement('div'); 
+    addToDoButton.classList.add('add-button');
+    const addButtonNode = document.createTextNode('+'); 
+    addToDoButton.appendChild(addButtonNode); 
+    document.body.appendChild(addToDoButton);
+}
 
 const convertResultInArrayOfToDos = (result) => result.map(obj => ToDo.fromObj(obj)); 
 
@@ -107,7 +116,6 @@ const resultCallBack = (result) => displayToDos(convertResultInArrayOfToDos(resu
 
 const catchError = (error) => console.log(error); 
 
-//  risultato di fetch è "Promise"; quindi risposta server, e in caso, risultato chiamata;
 const initApp = () => fetch("https://628b2f687886bbbb37b2139d.mockapi.io/todo") 
                      .then(responseCallBack) 
                      .then(resultCallBack) 

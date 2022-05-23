@@ -54,5 +54,6 @@ class ToDo{
             } else if (obj.priority === 3) {
                 newToDo.priority = ToDo.PRIORITY.Max;
             } 
+            return newToDo;
         }
 }

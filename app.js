@@ -1,4 +1,6 @@
-const BASE_URL = "https://628b2f687886bbbb37b2139d.mockapi.io/todo/";
+const BASE_URL = "https://628d3321a3fd714fd040dac4.mockapi.io/todo/";
+
+let todosArray = [];
 
 const responseCallBack = (response) => response.json(); 
 
@@ -30,35 +32,62 @@ const createToDoName = (name) => {
     return div; 
 } 
 
-const createDivider = (todos) => { 
+const createDivider = () => { 
     const divider = document.createElement('div');  
     divider.classList.add('todo-divider'); 
-    for (const todo of todos) {
-        divider.style.backgroundColor = todo.priority.color;
-    }
+    // for (const todo of arrayOfToDo) {
+    //     divider.style.backgroundColor = todo.priority.color;
+    // }
     return divider;
-}
+} 
 
-const deleteCallback = () => {
-    initApp();
+const filterTodos = (t1, t2) =>{
+    return t1.id !== t2.id;
   }
 
+const removeToDoAndRefresh = (todo) => {
+    // stopLoading()
+    todosArray = todosArray.filter(t1 => filterTodos(t1, todo))
+    displayToDos(todosArray);
+  }
+
+// const deleteCallback = () => {
+//     initApp();
+//   }
+
+// const deleteToDo = (id) => { 
+//     const deleteUrl = BASE_URL + id; 
+//     const fetchConf = { 
+//         method: 'delete'
+//     } 
+//     fetch(deleteUrl, fetchConf) 
+//     .then(responseCallBack) 
+//     .then(deleteCallback); 
+
+// } 
 const deleteToDo = (id) => { 
+    // startLoading();
     const deleteUrl = BASE_URL + id; 
     const fetchConf = { 
         method: 'delete'
     } 
     fetch(deleteUrl, fetchConf) 
-    .then(responseCallBack) 
-    .then(deleteCallback); 
+    .then(response => response.json()) 
+    .then(result => removeToDoAndRefresh(result)) 
+    // .catch(error => stopLoading())
 
 } 
 
+
 const createToDoCheck = () => { 
-    const check = document.createElement('input');  
-    check.setAttribute("type", "checkbox");
+    const check = document.createElement('button');  
     check.classList.add('done-check');
     return check; 
+}  
+const createToDoEdit = () => { 
+    const edit = document.createElement('button');  
+    edit.classList.add('edit-button');
+    return edit; 
 }  
 
 const createDeleteToDoButton = (id) => { 
@@ -76,6 +105,7 @@ const createToDoGrid = (todo) => {
     toDoGrid.appendChild(createToDoDate(todo.creationDate)); 
     toDoGrid.appendChild(createDivider());
     toDoGrid.appendChild(createDeleteToDoButton(todo.id)); 
+    toDoGrid.appendChild(createToDoEdit());
     toDoGrid.appendChild(createToDoCheck());
     return toDoGrid
 } 

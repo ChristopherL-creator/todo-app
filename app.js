@@ -10,7 +10,7 @@ const createToDoDate = (name) => {
 const createToDoTags = (tags) => { 
     const tagsContainer = document.createElement('div'); 
     tagsContainer.classList.add('todo-tags'); 
-
+//  populatetagcontainer?
     const tag = document.createElement('div'); 
     tag.classList.add('tags-items');
     tag.appendChild(document.createTextNode(tags)); 
@@ -56,7 +56,6 @@ const createToDoCheck = () => {
 const createDeleteToDoButton = (id) => { 
     const button = document.createElement('button'); 
     button.classList.add('delete-button');
-    button.classList.add('material-symbols-outlined');
     button.onclick = () => deleteToDo(id); 
     return button; 
 }  
@@ -99,7 +98,7 @@ const displayToDos = (arrayOfToDos) => {
     const updateButton = document.createElement('button'); 
     updateButton.classList.add('update-button'); 
     updateButton.onclick = () => initApp(); 
-    const updateButtonNode = document.createTextNode('Update'); 
+    const updateButtonNode = document.createTextNode(''); 
     updateButton.appendChild(updateButtonNode); 
     toDoHeader.appendChild(updateButton); 
     
@@ -133,6 +132,39 @@ initApp();
 // const BASE_URL = 'https://628b2f687886bbbb37b2139d.mockapi.io/todo'; 
 
 // const todosArray = [];  
+
+// function goToToDoPage() {
+//     window.location.href = "/todo.html";
+// }
+
+// function populateTagContainer(container,tags) {
+//     for(const tag of tags) { 
+//         const span = document.createElement('span'); 
+//         span.classList.add('tag'); 
+//         const node = document.createTextNode(tag); 
+//         span.appendChild(node); 
+//         container.appendChild(span);
+//     }
+// }
+
+// function createToDoCard(todo){ 
+    
+    // const cardTemplate = ` 
+    //     <span class="todo-name">#NAME</span> 
+    //     <div class="tag-container"> 
+    //         <span>#CREATIONDATE</span> 
+    //         <div class="divider"> 
+    //         <div class="buttons-container"> 
+    //             <button class="delete-button><img width="20px" src="./assets/delete.svg" alt=""></button> 
+    //             <button class="edit-button><img width="20px" src="./assets/delete.svg" alt=""></button> 
+    //             <button class="done-button><img width="20px" src="./assets/delete.svg" alt=""></button>
+    //         </div>`  
+
+//     const toDoHtml = cardTemplate.replace('#NAME', todo.name) 
+//                                  .replace('#CREATIONDATE', todo.creationDate.toLocaleString) 
+
+//     return toDoHtml;
+// }
 
 // function startLoading() {
 //     const loader = document.getElementById('loader'); 
@@ -178,23 +210,36 @@ initApp();
     // toDosContainer.innerHTML= '';
 //     for (const todo of todos) {
 // //  div contenitore
-//         const todoCard = document.createElement('div');
-// //  creo span; ci metto quindi dentro node 
-//         const span = document.createElement('span'); 
-//         const nameNode = document.createTextNode(todo.name); 
-//         span.appendChild(nameNode); 
-//         todoCard.appendChild(span); 
-        
-//         const button = document.createElement('button'); 
-//         button.onclick = () => deleteToDo(todo.id); 
-//  la chiamo come lambda, sennò lo esegue subito; se non dovessi 
-//  passare nessun parametro, ci tolgo le tonde, sennò la esegue subito; 
-//  devo quindi creare funzione contenitore della funzione che non devo eseguire 
-//  subito (lambda);
-//         const deleteNode = document.createTextNode('delete'); 
+//         const todoCard = document.createElement('div'); 
+    // toDoCard.classList.add('todo-card'); 
 
-//         button.appendChild(deleteNode); 
-//         todoCard.appendChild(button);
+    // toDoCard.innerHTML = createToDoCard(todo); 
+
+    // const tagContainer = toDoCard.querySelector('.tag-container'); 
+
+    // populateTagContainer(tagContainer, todo.tags); 
+
+    // const deleteButton = todoCard.querySelector('.delete-button')
+
+    // const divider = todoCard.querySelector('.divider'); 
+    // divider.style.backgroundColor = todo.priority.color;
+
+// // //  creo span; ci metto quindi dentro node 
+// //         const span = document.createElement('span'); 
+// //         const nameNode = document.createTextNode(todo.name); 
+// //         span.appendChild(nameNode); 
+// //         todoCard.appendChild(span); 
+        
+// //         const button = document.createElement('button'); 
+// //         button.onclick = () => deleteToDo(todo.id); 
+// //  la chiamo come lambda, sennò lo esegue subito; se non dovessi 
+// //  passare nessun parametro, ci tolgo le tonde, sennò la esegue subito; 
+// //  devo quindi creare funzione contenitore della funzione che non devo eseguire 
+// //  subito (lambda);
+// //         const deleteNode = document.createTextNode('delete'); 
+
+// //         button.appendChild(deleteNode); 
+// //         todoCard.appendChild(button);
         
 //         toDosContainer.appendChild(todoCard); 
 
@@ -203,7 +248,8 @@ initApp();
 // } 
 
 // function initToDos(todos){ 
-//     todosArray = todos; 
+    // stopLoading();
+//     todosArray = todos.map(obj => Todo.fromDbObj(obj)); 
 //     displayToDos(todosArray);
 // }
 
@@ -215,4 +261,10 @@ initApp();
 //     .catch(error => stopLoading())
 // } 
 
-// loadToDos();
+// loadToDos(); 
+
+//  1)  usare dialFree per chiedere conferma cancellazione; 
+
+//  2)  ordinati toDo per priorità; se doppi, il più vecchio; 
+
+//  3)  fare bella applicazione;

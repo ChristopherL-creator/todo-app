@@ -8,16 +8,16 @@ class ToDo{
             Max: {order: 3, name: 'molto alta', color: 'red'}, 
         }  
     
-        constructor(id, name, tags = [], priority = ToDo.PRIORITY.Low,){ 
+        constructor(id, name, tags = [], creationDate = new Date(), priority = ToDo.PRIORITY.Low,){ 
             this.id = id;
             this.name = name;
             this.tags = tags; 
-            this._creationDate = new Date().getTime(); 
+            this._creationDate = creationDate.getTime(); 
             this._priority = priority;
         } 
     
         set priority(newPriority){ 
-    this._priority = newPriority;
+            this._priority = newPriority;
         }
     
         get priority(){ 
@@ -25,26 +25,16 @@ class ToDo{
         }
 
         get creationDate(){ 
-            const date = new Date(this._creationDate); 
-            return date;
+            return new Date(this._creationDate); 
         } 
 
-        set creationDate(newDate){ 
-            const timeStamp = newDate.getTime(); 
-            this._creationDate = timeStamp;
-        }
-    
-        toString(){ 
-            const toDoString = 'ToDo: ' + this.name + '\n' +
-                               'priority: ' + this.priority.name + '\n' +
-                               'tags: ' + this.tags + '\n' + 
-                               'Data di creazione: ' + this.creationDate; 
-            return  toDoString;
-        }
+        set creationDate(date){
+            this._creationDate = date.getTime();
+          }
 
         static fromObj(obj){ 
-            const newToDo = new ToDo(obj.id, obj.name, obj.tags);
-            newToDo._creationDate = obj.creationDate; 
+            const newToDo = new ToDo(obj.id, obj.name, obj.tags, new Date(obj.creationDate * 1000));
+            newToDo.id = obj.id; 
             if (obj.priority === 0) {
                 newToDo.priority = ToDo.PRIORITY.Low;
             } else if (obj.priority === 1) {

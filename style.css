@@ -11,22 +11,27 @@ prima tags, e poi cancella; */
 
 .array-container{ 
     width: 100%;
-    margin-top: 50px;
+    margin-top: 45px; 
 }
 
 .todo-header{ 
-    top: 45px;
+    top: 0px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
-    margin-top: -10vh;
-    height: 8vh; 
-    min-height: 55px;
+    height: fit-content; 
+    min-height: 45px;
     width: 100%;
     position: fixed; 
     background-color: rgb(189, 56, 3); 
-    padding: 0px 5px; 
-    box-shadow: -4px 5px 5px 0px rgba(50, 50, 50, 0.651);
+    box-shadow: 0px 5px 5px 0px rgba(50, 50, 50, 0.651);
+} 
+
+.header-span{ 
+    color: rgb(255, 236, 223);
+    font-size: larger; 
+    font-weight: bold; 
+    margin-left: 5px;
 }
 
 .update-button{ 
@@ -35,27 +40,27 @@ prima tags, e poi cancella; */
     background-repeat: no-repeat; 
     background-size: cover; 
     background-position: center center;
-    border-style: none; ;
+    border-style: none; 
     width: 40px; 
     height: 40px;
     border-radius: 20%; 
-    margin: 10vw;
+    margin-left: 5px;
     font-size: medium;
 } 
 
-.todo-card{  
+.todo-card{ 
     background: rgb(224, 64, 16);
     /* background: linear-gradient(352deg, rgba(9,121,91,1) 26%, rgba(0,255,153,1) 100%); */
-    width: fit-content; 
-    margin: 10px; 
-    padding: 10px;
+    width: 85vw; 
+    margin: 10px ; 
+    padding: 2vw 5vw;
     display: flex; 
     color: rgb(46, 36, 30); 
     border-radius: 20px;
 } 
 
 .todo-grid{ 
-   
+    width: 100%;
     display: grid; 
     grid-template-columns: repeat(2fr, 1fr);
     grid-template-rows: repeat(1fr, 1fr, 1fr, 1fr, 1fr); 
@@ -81,7 +86,8 @@ prima tags, e poi cancella; */
     background-color: rgb(152, 48, 0); 
     height: fit-content;
     padding: 2px 10px;
-    border-radius: 20px;
+    border-radius: 20px; 
+    margin: 0px 2px;
     border-style: none; 
     color: rgb(253, 223, 209); 
 } 
@@ -140,8 +146,8 @@ prima tags, e poi cancella; */
     width: 55px; 
     height: 55px;
     border-radius: 100%; 
-    bottom: 1vh; 
-    right: 42vw; 
+    bottom: 13vh; 
+    right: 5vw; 
     box-shadow: 3px 3px 3px 0px rgba(50, 50, 50, 0.505); 
     cursor: pointer;
 } 

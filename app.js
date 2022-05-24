@@ -1,20 +1,25 @@
+const BASE_URL = "https://628b2f687886bbbb37b2139d.mockapi.io/todo/";
+
 const responseCallBack = (response) => response.json(); 
 
-const createToDoDate = (name) => { 
-    const div = document.createElement('div'); 
-    div.classList.add('creation-date');
-    div.appendChild(document.createTextNode(name)); 
-    return div; 
+const createToDoDate = (creationDate) => { 
+    const dateDiv = document.createElement('div'); 
+    dateDiv.classList.add('creation-date');
+    dateDiv.appendChild(document.createTextNode(creationDate.toLocaleString())); 
+    return dateDiv; 
 } 
 
 const createToDoTags = (tags) => { 
     const tagsContainer = document.createElement('div'); 
-    tagsContainer.classList.add('todo-tags'); 
-//  populatetagcontainer?
-    const tag = document.createElement('div'); 
-    tag.classList.add('tags-items');
-    tag.appendChild(document.createTextNode(tags)); 
-    tagsContainer.appendChild(tag);  
+tagsContainer.classList.add('todo-tags'); 
+    for (const tag of tags) {
+        const span = document.createElement('span');
+        span.classList.add('tags-items');
+        const node = document.createTextNode(tag);
+        span.appendChild(node);
+        tagsContainer.appendChild(span) 
+    }
+
     return tagsContainer; 
 } 
 
@@ -25,9 +30,12 @@ const createToDoName = (name) => {
     return div; 
 } 
 
-const createDivider = () => { 
-    const divider = document.createElement('div'); 
+const createDivider = (todos) => { 
+    const divider = document.createElement('div');  
     divider.classList.add('todo-divider'); 
+    for (const todo of todos) {
+        divider.style.backgroundColor = todo.priority.color;
+    }
     return divider;
 }
 
@@ -36,7 +44,7 @@ const deleteCallback = () => {
   }
 
 const deleteToDo = (id) => { 
-    const deleteUrl = "https://628b2f687886bbbb37b2139d.mockapi.io/todo/" + id; 
+    const deleteUrl = BASE_URL + id; 
     const fetchConf = { 
         method: 'delete'
     } 
@@ -79,21 +87,21 @@ const createToDoCard = (todo) => {
     return toDoCard;
 }
 
-
 const createArrayOfToDosCard = (arrayOfToDo) => arrayOfToDo.map(todo => createToDoCard(todo)); 
 
 const displayToDos = (arrayOfToDos) => { 
+
     document.body.innerHTML= ''; 
 
     const toDoHeader = document.createElement('header'); 
     toDoHeader.classList.add('todo-header');
     document.body.appendChild(toDoHeader);
     
-    const headerH1 = document.createElement('h2'); 
-    headerH1.classList.add('header-h2');
+    const headerSpan = document.createElement('span'); 
+    headerSpan.classList.add('header-span');
     const titleNode = document.createTextNode('ToDo App'); 
-    headerH1.appendChild(titleNode); 
-    toDoHeader.appendChild(headerH1); 
+    headerSpan.appendChild(titleNode); 
+    toDoHeader.appendChild(headerSpan); 
     
     const updateButton = document.createElement('button'); 
     updateButton.classList.add('update-button'); 
@@ -120,7 +128,8 @@ const resultCallBack = (result) => displayToDos(convertResultInArrayOfToDos(resu
 
 const catchError = (error) => console.log(error); 
 
-const initApp = () => fetch("https://628b2f687886bbbb37b2139d.mockapi.io/todo") 
+const initApp = () => 
+                     fetch(BASE_URL) 
                      .then(responseCallBack) 
                      .then(resultCallBack) 
                      .catch(catchError);

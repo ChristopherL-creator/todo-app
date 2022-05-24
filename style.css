@@ -143,8 +143,8 @@ prima tags, e poi cancella; */
     width: 60px; 
     height: 60px;
     border-radius: 100%; 
-    margin-left: 40vw; 
-    margin-top: -92%; 
+    bottom: 1%; 
+    right: 40%;
     -webkit-box-shdow: 5px 5px 5px 0px rgba(50, 50, 50, 0.81);
     -moz-box-shadow:    5px 5px 5px 0px rgba(50, 50, 50, 0.81);
     box-shadow:         5px 5px 5px 0px rgba(50, 50, 50, 0.81);

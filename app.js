@@ -31,7 +31,7 @@ const deleteCallback = () => {
     initApp();
   }
 
-const createDeleteToDo = (id) => { 
+const deleteToDo = (id) => { 
     const deleteUrl = "https://628b2f687886bbbb37b2139d.mockapi.io/todo/" + id; 
     const fetchConf = { 
         method: 'delete'

@@ -1,4 +1,4 @@
-const BASE_URL = "https://628d3321a3fd714fd040dac4.mockapi.io/todo/";
+const BASE_URL = "https://628b2f687886bbbb37b2139d.mockapi.io/todo/";
 
 let todosArray = [];
 
@@ -32,9 +32,10 @@ const createToDoName = (name) => {
     return div; 
 } 
 
-const createDivider = () => { 
+const createDivider = (priority) => {
     const divider = document.createElement('div');  
-    divider.classList.add('todo-divider'); 
+    divider.classList.add('todo-divider');
+    divider.style.backgroundColor = priority.color;
     // for (const todo of arrayOfToDo) {
     //     divider.style.backgroundColor = todo.priority.color;
     // }
@@ -43,10 +44,9 @@ const createDivider = () => {
 
 const filterTodos = (t1, t2) =>{
     return t1.id !== t2.id;
-  }
+}
 
 const removeToDoAndRefresh = (todo) => {
-    // stopLoading()
     todosArray = todosArray.filter(t1 => filterTodos(t1, todo))
     displayToDos(todosArray);
   }
@@ -103,7 +103,7 @@ const createToDoGrid = (todo) => {
     toDoGrid.appendChild(createToDoName(todo.name)); 
     toDoGrid.appendChild(createToDoTags(todo.tags)); 
     toDoGrid.appendChild(createToDoDate(todo.creationDate)); 
-    toDoGrid.appendChild(createDivider());
+    toDoGrid.appendChild(createDivider(todo.priority));
     toDoGrid.appendChild(createDeleteToDoButton(todo.id)); 
     toDoGrid.appendChild(createToDoEdit());
     toDoGrid.appendChild(createToDoCheck());
@@ -154,7 +154,10 @@ const displayToDos = (arrayOfToDos) => {
 
 const convertResultInArrayOfToDos = (result) => result.map(obj => ToDo.fromObj(obj)); 
 
-const resultCallBack = (result) => displayToDos(convertResultInArrayOfToDos(result));  
+const resultCallBack = (result) => {
+    todosArray = convertResultInArrayOfToDos(result);
+    displayToDos(todosArray);
+}
 
 const catchError = (error) => console.log(error); 
 

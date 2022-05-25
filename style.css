@@ -31,7 +31,7 @@ prima tags, e poi cancella; */
 } 
 
 .header-span{ 
-    color: rgb(246, 223, 255);
+    color: rgb(245, 195, 255);
     font-size: x-large; 
     font-weight: bold; 
     margin-left: 5px;
@@ -76,7 +76,7 @@ prima tags, e poi cancella; */
     grid-area: name; 
     font-size: large; 
     font-weight: bold;
-    color: rgb(240, 209, 253); 
+    color: rgb(245, 195, 255); 
 } 
 
 .todo-tags{ 
@@ -91,12 +91,12 @@ prima tags, e poi cancella; */
     border-radius: 20px; 
     margin: 0px 2px;
     border-style: none; 
-    color: rgb(240, 209, 253); 
+    color: rgb(245, 195, 255);
 } 
 
 .creation-date{ 
     grid-area: creazione;  
-    color: rgb(237, 209, 253); 
+    color: rgb(245, 195, 255);
 } 
 
 .todo-divider{ 
@@ -163,7 +163,7 @@ prima tags, e poi cancella; */
 
 .add-button{ 
     background-color: rgb(186, 68, 255); 
-    color: rgb(235, 209, 253);
+    color: rgb(245, 195, 255);
     position: fixed; 
     font-size: xx-large;
     display: flex;

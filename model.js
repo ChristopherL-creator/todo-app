@@ -38,7 +38,7 @@ class ToDo{
             if (obj.priority === 0) {
                 newToDo.priority = ToDo.PRIORITY.Low;
             } else if (obj.priority === 1) {
-                newToDo.priority = ToDo.PRIORITY.Normal;
+                newToDo.priority = ToDo.PRIORITY.Medium;
             } else if (obj.priority === 2) {
                 newToDo.priority = ToDo.PRIORITY.High;
             } else if (obj.priority === 3) {

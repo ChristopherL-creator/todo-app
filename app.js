@@ -51,20 +51,6 @@ const removeToDoAndRefresh = (todo) => {
     displayToDos(todosArray);
   }
 
-// const deleteCallback = () => {
-//     initApp();
-//   }
-
-// const deleteToDo = (id) => { 
-//     const deleteUrl = BASE_URL + id; 
-//     const fetchConf = { 
-//         method: 'delete'
-//     } 
-//     fetch(deleteUrl, fetchConf) 
-//     .then(responseCallBack) 
-//     .then(deleteCallback); 
-
-// } 
 const deleteToDo = (id) => { 
     // startLoading();
     const deleteUrl = BASE_URL + id; 
@@ -75,7 +61,6 @@ const deleteToDo = (id) => {
     .then(response => response.json()) 
     .then(result => removeToDoAndRefresh(result)) 
     // .catch(error => stopLoading())
-
 } 
 
 

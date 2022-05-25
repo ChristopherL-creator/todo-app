@@ -14,7 +14,7 @@ prima tags, e poi cancella; */
 
 .array-container{ 
     width: 100%;
-    margin-top: 45px; 
+    margin-top: 50px; 
 }
 
 .todo-header{ 
@@ -178,7 +178,7 @@ prima tags, e poi cancella; */
     width: 55px; 
     height: 55px;
     border-radius: 100%; 
-    bottom: 12vh; 
+    bottom: 16vh; 
     right: 5vw; 
     box-shadow: 3px 3px 3px 0px rgba(50, 50, 50, 0.505); 
     cursor: pointer;

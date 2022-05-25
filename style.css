@@ -54,7 +54,8 @@ prima tags, e poi cancella; */
     padding: 2vw 5vw;
     display: flex; 
     color: rgb(46, 36, 30); 
-    border-radius: 20px;
+    border-radius: 20px; 
+    box-shadow: 3px 3px 3px 0px rgba(50, 50, 50, 0.505);
 } 
 
 .todo-grid{ 

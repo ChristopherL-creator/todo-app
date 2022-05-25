@@ -129,6 +129,7 @@ prima tags, e poi cancella; */
     box-shadow: 3px 3px 3px 0px rgba(50, 50, 50, 0.505);
     background-color: rgb(164, 16, 250); 
     cursor: pointer; 
+
 } 
 
 .edit-button{ 
@@ -145,7 +146,7 @@ prima tags, e poi cancella; */
     width: 40px; 
     margin-right: 10%;
     justify-self: center; 
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .done-check{ 
@@ -161,7 +162,8 @@ prima tags, e poi cancella; */
     height: 40px;
     width: 40px; 
     justify-self: end; 
-    cursor: pointer;
+    cursor: pointer; 
+
 }
 
 .add-button{ 

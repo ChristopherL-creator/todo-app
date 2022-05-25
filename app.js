@@ -105,9 +105,9 @@ const createToDoCard = (todo) => {
 const createArrayOfToDosCard = (arrayOfToDo) => arrayOfToDo.map(todo => createToDoCard(todo)); 
 
 const displayToDos = (arrayOfToDos) => { 
-
+    
     document.body.innerHTML= ''; 
-
+    
     const toDoHeader = document.createElement('header'); 
     toDoHeader.classList.add('todo-header');
     document.body.appendChild(toDoHeader);
@@ -137,7 +137,15 @@ const displayToDos = (arrayOfToDos) => {
     document.body.appendChild(addToDoButton);
 }
 
+// const orderByPriority = convertResultInArrayOfToDos(result).sort(compareByPriority); 
+//     displayToDos(convertResultInArrayOfToDos(result)); 
+
+// const compareByPriority = (todo1, todo2) => {
+//     return todo1.priority.order - todo2.priority.order; 
+// } 
+
 const convertResultInArrayOfToDos = (result) => result.map(obj => ToDo.fromObj(obj)); 
+
 
 const resultCallBack = (result) => {
     todosArray = convertResultInArrayOfToDos(result);
